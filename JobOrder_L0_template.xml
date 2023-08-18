@@ -1,0 +1,43 @@
+<Ipf_Job_Order>
+    <Ipf_Conf>
+        <Processor_Name>IPF-AWS-L0</Processor_Name>
+        <Version>01.00</Version>
+        <Log_Level>INFO</Log_Level>
+        <Test>false</Test>
+        <Breakpoint_Enable>false</Breakpoint_Enable>
+        <Processing_Station>PM</Processing_Station>
+        <Config_Files count="1">
+            <Conf_File_Name>AWS_L0_Configuration.xml</Conf_File_Name>
+        </Config_Files>
+        <Sensing_Time>
+            <Start></Start>
+            <Stop></Stop>
+        </Sensing_Time>
+    </Ipf_Conf>
+    <List_of_Ipf_Procs count="1">
+        <Ipf_Proc>
+            <Task_Name>IPF-AWS-L0</Task_Name>
+            <Task_Version>01.00</Task_Version>
+            <List_of_Inputs count="1">
+                <Input>
+                    <File_Type>DCS_02_0X068___</File_Type>
+                    <File_Name_Type>Physical</File_Name_Type>
+                    <List_of_File_Names>
+                    </List_of_File_Names>
+                </Input>
+            </List_of_Inputs>
+            <List_of_Outputs count="2">
+                <Output>
+                    <File_Type>SRC_NAV_00</File_Type>
+                    <File_Name_Type>Directory</File_Name_Type>
+                    <File_Name>output/SRC_NAV_00</File_Name>
+                </Output>
+                <Output>
+                    <File_Type>SRC_AWS_00</File_Type>
+                    <File_Name_Type>Directory</File_Name_Type>
+                    <File_Name>output/SRC_AWS_00</File_Name>
+                </Output>
+            </List_of_Outputs>
+        </Ipf_Proc>
+    </List_of_Ipf_Procs>
+</Ipf_Job_Order>

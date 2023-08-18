@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Ipf_Job_Order xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:functx="http://www.functx.com"
+    xmlns:csw="http://www.deimos-space.com/csw4eo/csw">
+    <Ipf_Conf>
+        <Processor_Name>IPF-AWS-L1</Processor_Name>
+        <Version>01.00</Version>
+        <Stdout_Log_Level>INFO</Stdout_Log_Level>
+        <Stderr_Log_Level>PROGRESS</Stderr_Log_Level>
+        <Test>false</Test>
+        <Breakpoint_Enable>false</Breakpoint_Enable>
+        <Processing_Station>MPC</Processing_Station>
+        <Config_Files count="1">
+            <Conf_File_Name>AWS_L1_Configuration.xml</Conf_File_Name>
+        </Config_Files>
+        <Sensing_Time>
+            <Start>20220621_090100000000</Start>
+            <Stop>20220621_090618000000</Stop>
+        </Sensing_Time>
+    </Ipf_Conf>
+    <List_of_Ipf_Procs count="1">
+        <Ipf_Proc>
+            <Task_Name>IPF-AWS-L1</Task_Name>
+            <Task_Version>01.00</Task_Version>
+            <List_of_Inputs count="2">
+                <Input>
+                    <File_Type>SRC_AWS_00</File_Type>
+                    <File_Name_Type>Physical</File_Name_Type>
+                    <List_of_File_Names>
+                    </List_of_File_Names>
+                </Input>
+                <Input>
+                    <File_Type>SRC_NAV_00</File_Type>
+                    <File_Name_Type>Physical</File_Name_Type>
+                    <List_of_File_Names>
+                    </List_of_File_Names>
+                </Input>
+            </List_of_Inputs>
+            <List_of_Outputs count="1">
+                <Output>
+                    <File_Type>RAD_AWS_1B</File_Type>
+                    <File_Name_Type>Directory</File_Name_Type>
+                    <File_Name>RAD_AWS_1B</File_Name>
+                </Output>
+            </List_of_Outputs>
+        </Ipf_Proc>
+    </List_of_Ipf_Procs>
+</Ipf_Job_Order>
