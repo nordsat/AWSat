@@ -1,49 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Ipf_Job_Order xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:functx="http://www.functx.com"
-    xmlns:csw="http://www.deimos-space.com/csw4eo/csw">
-    <Ipf_Conf>
-        <Processor_Name>IPF-AWS-L1</Processor_Name>
-        <Version>01.00</Version>
-        <Stdout_Log_Level>INFO</Stdout_Log_Level>
-        <Stderr_Log_Level>PROGRESS</Stderr_Log_Level>
+<Ipf_Job_Order xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:functx="http://www.functx.com" xmlns:csw="http://www.deimos-space.com/csw4eo/csw">
+	<Ipf_Conf>
+		<Processor_Name>IPF-AWS-L1</Processor_Name>
+		<Version>02.00</Version>
+		<Stdout_Log_Level>INFO</Stdout_Log_Level>
+		<Stderr_Log_Level>PROGRESS</Stderr_Log_Level>
         <Test>false</Test>
-        <Breakpoint_Enable>false</Breakpoint_Enable>
-        <Processing_Station>MPC</Processing_Station>
-        <Config_Files count="1">
-            <Conf_File_Name>AWS_L1_Configuration.xml</Conf_File_Name>
+		<Breakpoint_Enable>false</Breakpoint_Enable>
+		<Processing_Station>MPC</Processing_Station>
+		<Config_Files count="1">
+            <Conf_File_Name>conf/L1/AWS_L1_Configuration.xml</Conf_File_Name>
         </Config_Files>
-        <Sensing_Time>
-            <Start>20220621_090100000000</Start>
-            <Stop>20220621_090618000000</Stop>
-        </Sensing_Time>
-    </Ipf_Conf>
-    <List_of_Ipf_Procs count="1">
-        <Ipf_Proc>
-            <Task_Name>IPF-AWS-L1</Task_Name>
-            <Task_Version>01.00</Task_Version>
-            <List_of_Inputs count="2">
-                <Input>
-                    <File_Type>SRC_AWS_00</File_Type>
-                    <File_Name_Type>Physical</File_Name_Type>
-                    <List_of_File_Names>
-                    </List_of_File_Names>
-                </Input>
-                <Input>
-                    <File_Type>SRC_NAV_00</File_Type>
-                    <File_Name_Type>Physical</File_Name_Type>
-                    <List_of_File_Names>
-                    </List_of_File_Names>
-                </Input>
-            </List_of_Inputs>
-            <List_of_Outputs count="1">
-                <Output>
-                    <File_Type>RAD_AWS_1B</File_Type>
-                    <File_Name_Type>Directory</File_Name_Type>
-                    <File_Name>RAD_AWS_1B</File_Name>
-                </Output>
-            </List_of_Outputs>
-        </Ipf_Proc>
-    </List_of_Ipf_Procs>
+		<Dynamic_Processing_Parameters count="9">
+			<Processing_Parameter>
+				<Name>spacecraft</Name>
+				<Value>AWS1</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>mission_type</Name>
+				<Value>G</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>disposition_mode</Name>
+				<Value>T</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>environment</Name>
+				<Value>D</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>organization</Name>
+				<Value>OHB</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>location</Name>
+				<Value>Stockholm</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>oflag</Name>
+				<Value>C</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>originator</Name>
+				<Value>OHB</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>processing_mode</Name>
+				<Value>B</Value>
+			</Processing_Parameter>
+		</Dynamic_Processing_Parameters>
+	</Ipf_Conf>
+	<List_of_Ipf_Procs count="1">
+		<Ipf_Proc>
+			<Task_Name>IPF-AWS-L1</Task_Name>
+			<Task_Version>01.00</Task_Version>
+			<List_of_Inputs count="4">
+				<Input>
+					<File_Type>LOG</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name></File_Name>
+					</List_of_File_Names>
+				</Input>
+				<Input>
+					<File_Type>IN</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name></File_Name>
+					</List_of_File_Names>
+				</Input>
+				<Input>
+					<File_Type>SRC_AWS_00</File_Type>
+					<File_Name_Type>Physical</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name>test-data/outputs/W_XX-OHB-Stockholm,SAT,AWS1-MWR-00-SRC_C_OHB_20230822154844_G_D_20440115111111_20440115125434_T_B____.nc</File_Name>
+					</List_of_File_Names>
+				</Input>
+				<Input>
+					<File_Type>SRC_NAV_00</File_Type>
+					<File_Name_Type>Physical</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name>test-data/outputs/W_XX-OHB-Stockholm,SAT,AWS1-MWR-00-NAV_C_OHB_20230822154844_G_D_20440115111111_20440115125434_T_B____.nc</File_Name>
+					</List_of_File_Names>
+				</Input>
+			</List_of_Inputs>
+			<List_of_Outputs count="2">
+				<Output>
+					<File_Type>RAD_AWS_1B</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<File_Name>test-data/outputs</File_Name>
+				</Output>
+				<Output>
+					<File_Type>TMP</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<File_Name></File_Name>
+				</Output>
+			</List_of_Outputs>
+		</Ipf_Proc>
+	</List_of_Ipf_Procs>
 </Ipf_Job_Order>
