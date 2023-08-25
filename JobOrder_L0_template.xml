@@ -1,41 +1,107 @@
 <Ipf_Job_Order>
     <Ipf_Conf>
         <Processor_Name>IPF-AWS-L0</Processor_Name>
-        <Version>01.00</Version>
+        <Version>02.00</Version>
         <Log_Level>INFO</Log_Level>
         <Test>false</Test>
         <Breakpoint_Enable>false</Breakpoint_Enable>
+        <Acquisition_Station></Acquisition_Station>
         <Processing_Station>PM</Processing_Station>
         <Config_Files count="1">
-            <Conf_File_Name>AWS_L0_Configuration.xml</Conf_File_Name>
+            <Conf_File_Name>conf/L0/AWS_L0_Configuration.xml</Conf_File_Name>
         </Config_Files>
-        <Sensing_Time>
-            <Start></Start>
-            <Stop></Stop>
-        </Sensing_Time>
+		<Dynamic_Processing_Parameters count="9">
+			<Processing_Parameter>
+				<Name>spacecraft</Name>
+				<Value>AWS1</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>mission_type</Name>
+				<Value>G</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>disposition_mode</Name>
+				<Value>T</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>environment</Name>
+				<Value>D</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>organization</Name>
+				<Value>OHB</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>location</Name>
+				<Value>Stockholm</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>oflag</Name>
+				<Value>C</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>originator</Name>
+				<Value>OHB</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>processing_mode</Name>
+				<Value>B</Value>
+			</Processing_Parameter>
+		</Dynamic_Processing_Parameters>
     </Ipf_Conf>
     <List_of_Ipf_Procs count="1">
         <Ipf_Proc>
             <Task_Name>IPF-AWS-L0</Task_Name>
-            <Task_Version>01.00</Task_Version>
-            <List_of_Inputs count="1">
+            <Task_Version>02.00</Task_Version>
+            <List_of_Inputs count="2">
+                <!-- Auxiliary Input Files -->
+                <Input>
+                    <File_Type>AX__BB_AX</File_Type>
+                    <File_Name_Type>Physical</File_Name_Type>
+                    <List_of_File_Names count="1">
+                        <File_Name>ADF/AWS_AUX_DATA/GeoData/iers_bulletin_b_11_2007.txt</File_Name>
+                    </List_of_File_Names>
+                </Input>
+                <!-- Raw Data Input Files -->
                 <Input>
                     <File_Type>DCS_02_0X068___</File_Type>
                     <File_Name_Type>Physical</File_Name_Type>
-                    <List_of_File_Names>
+                    <List_of_File_Names count="20">
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0001.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0002.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0003.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0004.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0005.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0006.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0007.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0008.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0009.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0010.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0011.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0012.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0013.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0014.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0015.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0016.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0017.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0018.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0019.raw</File_Name>
+			<File_Name>test-data/inputs/DCS_02_0X068_20230807113901_vc2_DSDB_0020.raw</File_Name>
                     </List_of_File_Names>
                 </Input>
             </List_of_Inputs>
             <List_of_Outputs count="2">
                 <Output>
                     <File_Type>SRC_NAV_00</File_Type>
-                    <File_Name_Type>Directory</File_Name_Type>
-                    <File_Name>output/SRC_NAV_00</File_Name>
+                    <File_Name_Type>Physical</File_Name_Type>
+                    <!-- This field should specify an output folder, because the filename will be dynamic (with timestamp)-->
+		    <File_Name>test-data/outputs/</File_Name>
                 </Output>
                 <Output>
                     <File_Type>SRC_AWS_00</File_Type>
-                    <File_Name_Type>Directory</File_Name_Type>
-                    <File_Name>output/SRC_AWS_00</File_Name>
+                    <File_Name_Type>Physical</File_Name_Type>
+                    <!-- This field should specify an output folder, because the filename will be dynamic (with timestamp)-->
+		    <File_Name>test-data/outputs/</File_Name>
                 </Output>
             </List_of_Outputs>
         </Ipf_Proc>
