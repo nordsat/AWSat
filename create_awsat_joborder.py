@@ -14,7 +14,11 @@ def read_template(fname):
 
 def get_raw_file_list(tree):
     """Get the file list element from the XML tree."""
-    return tree.find('.//List_of_File_Names')
+    inputs = tree.findall('.//Input')
+    for i in inputs:
+        if i.find('.//File_Type').text.startswith('DCS'):
+            return i.find('.//List_of_File_Names')
+    return None
 
 
 def set_raw_file_list(template, input_files):
@@ -44,24 +48,12 @@ def set_l0_files(template, level0_data, level0_nav):
         file_list.append(file_name)
 
 
-def set_times(tree, start_time, stop_time):
-    """Set start and end times."""
-    tree.find('.//Start').text = start_time
-    tree.find('.//Stop').text = stop_time
-
-
 def parse_args():
     """Parse commandline arguments."""
     parser = argparse.ArgumentParser(
         description="Create JobOrder files for AWSat.",
         epilog="The dates need to match pattern 'Y%m%d_%H%M%S%f', e.g. 20230818_143618000000",
     )
-    parser.add_argument("-s", "--start-time", required=True,
-                        dest="start_time", type=str,
-                        help="Start time of the overpass.")
-    parser.add_argument("-e", "--end-time", required=True,
-                        dest="end_time", type=str,
-                        help="End time of the overpass.")
     parser.add_argument("-t", "--template-file", required=True,
                         dest="template_file", type=str,
                         help="Template for the JobOrder XML.")
@@ -96,7 +88,6 @@ def main():
         set_raw_file_list(template, args.raw_files)
     else:
         set_l0_files(template, args.level0_data, args.level0_nav)
-    set_times(template, args.start_time, args.end_time)
     ET.indent(template, space='    ')
     template.write(args.joborder_file)
 
