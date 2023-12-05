@@ -31,6 +31,7 @@ def set_raw_file_list(template, input_files):
         file_name.text = f
         file_list.append(file_name)
     file_list.attrib = attrib
+    ET.indent(template, space='    ')
 
 
 def set_l0_files(template, level0_data, level0_nav):
@@ -46,6 +47,7 @@ def set_l0_files(template, level0_data, level0_nav):
         else:
             file_name.text = level0_nav
         file_list.append(file_name)
+    ET.indent(template, space='    ')
 
 
 def parse_args():
@@ -88,7 +90,6 @@ def main():
         set_raw_file_list(template, args.raw_files)
     else:
         set_l0_files(template, args.level0_data, args.level0_nav)
-    ET.indent(template, space='    ')
     template.write(args.joborder_file)
 
 
