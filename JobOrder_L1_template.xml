@@ -88,7 +88,7 @@
 				<Output>
 					<File_Type>RAD_AWS_1B</File_Type>
 					<File_Name_Type>Directory</File_Name_Type>
-					<File_Name>test-data/outputs</File_Name>
+					<File_Name>/data/L1</File_Name>
 				</Output>
 				<Output>
 					<File_Type>TMP</File_Type>
