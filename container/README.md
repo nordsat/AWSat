@@ -18,10 +18,10 @@ data, for example `/tmp/raw/` and `/tmp/L1/`, respectively.
 
 Run the container with mounted directories:
 
-  podman run \
-  --mount type=bind,source=/tmp/raw,target=/data/raw \
-  --mount type=bind,source=/tmp/L1,target=/data/L1 \
-  --rm \
-  localhost/aws_pre_proc
+    podman run \
+    --mount type=bind,source=/tmp/raw,target=/data/raw \
+    --mount type=bind,source=/tmp/L1,target=/data/L1 \
+    --rm \
+    localhost/aws_pre_proc
 
 Now `/tmp/L1` should contain the processed Level 1 data.
