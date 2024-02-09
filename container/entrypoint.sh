@@ -20,8 +20,6 @@ cd /opt/aws/
 python3.9 AWSat/create_awsat_joborder.py -t $L0_JOBORDER_TEMPLATE -j $L0_JOBORDER -r $RAW_INPUT_DIR/*raw
 bin/IPF-AWS-L0 $L0_JOBORDER
 
-ls -lh /tmp/
-
 # Process L0 to L1
 python3.9 AWSat/create_awsat_joborder.py -t $L1_JOBORDER_TEMPLATE -j $L1_JOBORDER -0 $L0_OUTPUT_DIR/*SRC* -n $L0_OUTPUT_DIR/*NAV*
 bin/IPF-AWS-L1 $L1_JOBORDER
