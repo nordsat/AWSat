@@ -34,7 +34,7 @@ def set_raw_file_list(template, input_files):
     ET.indent(template, space='    ')
 
 
-def set_l0_files(template, level0_data, level0_nav):
+def set_l0_files(template, level0_data, level0_nav, level1_dir=None):
     """Set the the Level0 data and navigation files to the template."""
     input_sections = template.findall(".//Input")
     for i in input_sections:
@@ -46,7 +46,16 @@ def set_l0_files(template, level0_data, level0_nav):
             file_name.text = level0_data
         else:
             file_name.text = level0_nav
+
         file_list.append(file_name)
+
+    if level1_dir:
+        output_sections = template.findall(".//Output")
+        for o in output_sections:
+            file_name = o.find("File_Name")
+            if o.find(".//File_Type").text == "RAD_AWS_1B":
+                file_name.text = level1_dir
+
     ET.indent(template, space='    ')
 
 
@@ -64,6 +73,8 @@ def parse_args():
                         help="Name of the output JobOrder file.")
     parser.add_argument("-0", "--level0-data", dest="level0_data", type=str,
                         help="Level0 data file.")
+    parser.add_argument("-1", "--level1-dir", dest="level1_dir", type=str,
+                        help="Level1 data dir.")
     parser.add_argument("-n", "--level0-navigation", dest="level0_nav",
                         type=str, help="Level0 navigation file.")
     parser.add_argument("-r", "--raw-files", dest="raw_files", nargs='+',
@@ -89,7 +100,7 @@ def main():
     if args.raw_files:
         set_raw_file_list(template, args.raw_files)
     else:
-        set_l0_files(template, args.level0_data, args.level0_nav)
+        set_l0_files(template, args.level0_data, args.level0_nav, args.level1_dir)
     template.write(args.joborder_file)
 
 
