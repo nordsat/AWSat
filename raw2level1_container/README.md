@@ -1,4 +1,4 @@
-# Building
+# Building container for AWSat raw to Level1 processing
 
 Copy the processor source code to this directory:
 
@@ -6,6 +6,15 @@ Copy the processor source code to this directory:
 
 If the processor version/package name changes, Dockerfile needs to be
 adjusted accordingly.
+
+Adjust the processing parameters in thejoborder XML files to match
+your processing centre:
+
+  * location (default: Stockholm)
+  * organization (default: OHB)
+  * etc.
+
+Leave other parts intact.
 
 Build the container:
 
