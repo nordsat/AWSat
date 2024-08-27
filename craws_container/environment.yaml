@@ -1,0 +1,16 @@
+channels:
+  - conda-forge
+  - nsidc
+
+dependencies:
+  - python=3.12
+  - certifi
+  - cftime
+  - netcdf4
+  - numpy
+  - pandas
+  - python-dateutil
+  - pymap3d
+  - pyproj
+  - xarray
+  - scipy
