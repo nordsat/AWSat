@@ -7,7 +7,7 @@ Copy the processor source code to this directory:
 If the processor version/package name changes, Dockerfile needs to be
 adjusted accordingly.
 
-Adjust the processing parameters in thejoborder XML files to match
+Adjust the processing parameters in the joborder XML files to match
 your processing centre:
 
   * location (default: Stockholm)
@@ -33,4 +33,5 @@ Run the container with mounted directories:
     --rm \
     localhost/aws_pre_proc
 
-Now `/tmp/L1` should contain the processed Level 1 data.
+After the processing completes `/tmp/L1` should contain the processed
+Level 1 data.

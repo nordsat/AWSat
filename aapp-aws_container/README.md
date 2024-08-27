@@ -24,5 +24,5 @@ Run the container with mounted directories:
     --rm \
     localhost/aapp-aws
 
-Now `/tmp/L1c` should contain one L1c BUFR file for each of the L1
-NetCDF4 files.
+After the processing completes `/tmp/L1c` should contain one L1c BUFR
+file for each of the L1 NetCDF4 files.
