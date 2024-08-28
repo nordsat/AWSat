@@ -39,6 +39,7 @@ RUN cd /opt \
     && /opt/aws/support/scripts/build.sh
 
 RUN cd /opt/aws \
+    && mkdir for_container \
     && mkdir AWSat \
     && mv lib/ bin/ conf/ ADF/ AWSat/ for_container/
 
@@ -57,6 +58,6 @@ RUN apt-get update -y \
        python3.9 \
        libopenblas0
 
-COPY --from=builder /opt/aws/for_container /opt/aws
+COPY --from=builder /opt/aws/for_container /opt/aws/
 COPY entrypoint.sh /opt/aws/bin/
 ENTRYPOINT ["/opt/aws/bin/entrypoint.sh"]
