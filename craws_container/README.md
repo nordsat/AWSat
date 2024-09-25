@@ -24,5 +24,14 @@ Run the container with mounted directories:
     --rm \
     localhost/craws
 
+If this doesn't work, SELinux might prohibit bind mounts and the following
+needs to be used instead:
+
+    podman run \
+    -v /tmp/level1b:/level1b:Z \
+    -v /tmp/level1b:/level1c:Z \
+    --rm \
+    localhost/craws
+
 After the processing completes (in 10-20 seconds) `/tmp/level1c`
 should contain the processed Level 1c data.
