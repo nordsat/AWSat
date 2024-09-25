@@ -24,5 +24,14 @@ Run the container with mounted directories:
     --rm \
     localhost/aapp-aws
 
+If this doesn't work, SELinux might prohibit bind mounts and the following
+needs to be used instead:
+
+    podman run \
+    -v /tmp/L1:/data/L1:Z \
+    -v /tmp/L1c:/data/L1c:Z \
+    --rm \
+    localhost/aapp-aws
+
 After the processing completes `/tmp/L1c` should contain one L1c BUFR
 file for each of the L1 NetCDF4 files.
