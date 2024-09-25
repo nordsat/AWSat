@@ -33,5 +33,14 @@ Run the container with mounted directories:
     --rm \
     localhost/aws_pre_proc
 
+If this doesn't work, SELinux might prohibit bind mounts and the following
+needs to be used instead:
+
+    podman run \
+    -v /tmp/raw:/data/raw:Z \
+    -v /tmp/L1:/data/L1:Z \
+    --rm \
+    localhost/aws_pre_proc
+
 After the processing completes `/tmp/L1` should contain the processed
 Level 1 data.
