@@ -5,4 +5,4 @@ source /opt/conda/.bashrc
 
 micromamba activate
 
-remap -o /level1c -l /level1b/*
+remap -o /level1c -l /level1b/*nc
