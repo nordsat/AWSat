@@ -1,11 +1,8 @@
 # Building container for CRAWS AWS Level1c processing
 
-Copy the processor source code to this directory:
+Clone the CRAWS repositorythis directory:
 
-    cp ~/Downloads/craws_main_20240821.tgz .
-
-If the processor version/package name changes, Dockerfile needs to be
-adjusted accordingly.
+    git clone <craws repo url>
 
 Build the container:
 

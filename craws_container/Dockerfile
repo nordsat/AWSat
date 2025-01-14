@@ -3,7 +3,7 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal AS builder
 ENV MAMBA_ROOT_PREFIX=/opt/conda
 ENV MAMBA_DISABLE_LOCKFILE=TRUE
 
-COPY craws_main_20240821.tgz /tmp
+COPY craws/ /tmp
 COPY environment.yaml /tmp
 
 RUN microdnf -y update && \
@@ -16,7 +16,6 @@ RUN mkdir /opt/conda && \
     mv /root/.bashrc /opt/conda/.bashrc
 
 RUN cd /tmp && \
-    tar -xzvf craws_main_20240821.tgz && \
     mkdir /data && \
     cp tests/data/AWSat_example_orbit_6orb.nc /data/ && \
     cp tests/data/aws_remapping_weights.nc /data/ && \

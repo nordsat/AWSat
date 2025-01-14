@@ -1,6 +1,5 @@
 channels:
   - conda-forge
-  - nsidc
 
 dependencies:
   - python=3.12
