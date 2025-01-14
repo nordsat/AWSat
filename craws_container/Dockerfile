@@ -7,7 +7,7 @@ COPY craws/ /tmp
 COPY environment.yaml /tmp
 
 RUN microdnf -y update && \
-    microdnf -y install tar bzip2 gzip && \
+    microdnf -y install tar bzip2 gzip git && \
     microdnf -y clean all
 
 RUN mkdir /opt/conda && \
@@ -16,6 +16,7 @@ RUN mkdir /opt/conda && \
     mv /root/.bashrc /opt/conda/.bashrc
 
 RUN cd /tmp && \
+    git checkout v0.0.6 && \
     mkdir /data && \
     cp tests/data/AWSat_example_orbit_6orb.nc /data/ && \
     cp tests/data/aws_remapping_weights.nc /data/ && \
