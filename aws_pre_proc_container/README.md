@@ -1,4 +1,4 @@
-# Building
+# Building container for AWSat raw to Level1 processing
 
 Copy the processor source code to this directory:
 
@@ -6,6 +6,15 @@ Copy the processor source code to this directory:
 
 If the processor version/package name changes, Dockerfile needs to be
 adjusted accordingly.
+
+Adjust the processing parameters in the joborder XML files to match
+your processing centre:
+
+  * location (default: Stockholm)
+  * organization (default: OHB)
+  * etc.
+
+Leave other parts intact.
 
 Build the container:
 
@@ -24,4 +33,14 @@ Run the container with mounted directories:
     --rm \
     localhost/aws_pre_proc
 
-Now `/tmp/L1` should contain the processed Level 1 data.
+If this doesn't work, SELinux might prohibit bind mounts and the following
+needs to be used instead:
+
+    podman run \
+    -v /tmp/raw:/data/raw:Z \
+    -v /tmp/L1:/data/L1:Z \
+    --rm \
+    localhost/aws_pre_proc
+
+After the processing completes `/tmp/L1` should contain the processed
+Level 1 data.

@@ -4,7 +4,7 @@ WORKDIR /opt
 COPY aws-ipf-v2.0.0-repackaged-20230822.tar.7z /opt
 
 RUN apt update -y \
-    && TZ="Europe/Oslo" apt install -y tzdata \
+    && TZ="UTC" apt install -y tzdata \
     && apt install -y build-essential \
        rsync \
        p7zip-full \
@@ -39,9 +39,13 @@ RUN cd /opt \
     && /opt/aws/support/scripts/build.sh
 
 RUN cd /opt/aws \
-    && git clone https://github.com/nordsat/AWSat.git \
     && mkdir for_container \
+    && mkdir AWSat \
     && mv lib/ bin/ conf/ ADF/ AWSat/ for_container/
+
+COPY JobOrder_L0_template.xml /opt/aws/for_container/AWSat/JobOrder_L0_template.xml
+COPY JobOrder_L1_template.xml /opt/aws/for_container/AWSat/JobOrder_L1_template.xml
+COPY create_awsat_joborder.py /opt/aws/for_container/AWSat/
 
 FROM ubuntu:20.04
 
@@ -54,6 +58,6 @@ RUN apt-get update -y \
        python3.9 \
        libopenblas0
 
-COPY --from=builder /opt/aws/for_container /opt/aws
+COPY --from=builder /opt/aws/for_container /opt/aws/
 COPY entrypoint.sh /opt/aws/bin/
 ENTRYPOINT ["/opt/aws/bin/entrypoint.sh"]
