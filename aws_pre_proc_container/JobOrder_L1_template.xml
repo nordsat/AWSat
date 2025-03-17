@@ -7,10 +7,48 @@
     <Stderr_Log_Level>PROGRESS</Stderr_Log_Level>
     <Test>false</Test>
     <Breakpoint_Enable>false</Breakpoint_Enable>
-    <Processing_Station>SOD</Processing_Station>
+    <Processing_Station>Sodankyla</Processing_Station>
     <Config_Files count="1">
       <Conf_File_Name>/opt/aws/conf/L1/AWS_L1_Configuration.xml</Conf_File_Name>
     </Config_Files>
+    <Dynamic_Processing_Parameters count="9">
+      <Processing_Parameter>
+        <Name>spacecraft</Name>
+        <Value>AWS1</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>mission_type</Name>
+        <Value>G</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>disposition_mode</Name>
+        <Value>T</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>environment</Name>
+        <Value>D</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>organization</Name>
+        <Value>FMI</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>location</Name>
+        <Value>Sodankyla</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>oflag</Name>
+        <Value>C</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>originator</Name>
+        <Value>FMI</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>processing_mode</Name>
+        <Value>B</Value>
+      </Processing_Parameter>
+    </Dynamic_Processing_Parameters>
     <!--Sensing_Time>
       <Start>20250206_163403000000</Start>
       <Stop>20250206_182403000000</Stop>

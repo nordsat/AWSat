@@ -5,13 +5,15 @@ Copy the pre-built processor library package to this directory:
     cp ~/Downloads/v3.1.1.zip .
 
 If the processor version/package name changes, Dockerfile needs to be
-adjusted accordingly.  Remember to adjust the configuration files in
-the package as necessary.
+adjusted accordingly.
 
 Adjust the processing parameters in the joborder XML files to match
 your processing centre:
 
-  * Processing_Station (default: SOD)
+  * Processing_Station (default: Sodankyla)
+  * location (default: Sodankyla)
+  * organizator (default: FMI)
+  * originator (default: FMI)
 
 Leave other parts intact.
 
