@@ -7,6 +7,10 @@ Copy the pre-built processor library package to this directory:
 If the processor version/package name changes, Dockerfile needs to be
 adjusted accordingly.
 
+Copy also the Python script that changes the VCID to the build directory:
+
+    cp ~/Downloads/20250303/DSDB_VCID_replace.py .
+
 Adjust the processing parameters in the joborder XML files to match
 your processing centre:
 
