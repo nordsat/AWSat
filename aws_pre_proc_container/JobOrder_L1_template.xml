@@ -11,10 +11,10 @@
     <Config_Files count="1">
       <Conf_File_Name>/opt/aws/conf/L1/AWS_L1_Configuration.xml</Conf_File_Name>
     </Config_Files>
-    <Sensing_Time>
+    <!--Sensing_Time>
       <Start>20250206_163403000000</Start>
       <Stop>20250206_182403000000</Stop>
-    </Sensing_Time>
+    </Sensing_Time-->
   </Ipf_Conf>
   <List_of_Ipf_Procs count="1">
     <Ipf_Proc>
