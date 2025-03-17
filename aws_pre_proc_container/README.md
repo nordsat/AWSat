@@ -1,18 +1,17 @@
 # Building container for AWSat raw to Level1 processing
 
-Copy the processor source code to this directory:
+Copy the pre-built processor library package to this directory:
 
-    cp ~/Downloads/aws-ipf-v2.0.0-repackaged-20230822.tar.7z .
+    cp ~/Downloads/v3.1.1.zip .
 
 If the processor version/package name changes, Dockerfile needs to be
-adjusted accordingly.
+adjusted accordingly.  Remember to adjust the configuration files in
+the package as necessary.
 
 Adjust the processing parameters in the joborder XML files to match
 your processing centre:
 
-  * location (default: Stockholm)
-  * organization (default: OHB)
-  * etc.
+  * Processing_Station (default: SOD)
 
 Leave other parts intact.
 
