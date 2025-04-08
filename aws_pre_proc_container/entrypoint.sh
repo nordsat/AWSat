@@ -15,14 +15,14 @@ L1_JOBORDER_TEMPLATE=/opt/aws/AWSat/JobOrder_L1_template.xml
 #fi
 
 cd ${RAW_INPUT_DIR}
-for f in *raw; do
+for f in *data; do
     python3.9 /opt/aws/bin/DSDB_VCID_replace.py $f --replace-vcid 3 2
 done
 
 cd /opt/aws/
 
 # Process RAW data to L0
-python3.9 /opt/aws/bin/create_awsat_joborder.py -t $L0_JOBORDER_TEMPLATE -j $L0_JOBORDER -r $RAW_INPUT_DIR/*raw
+python3.9 /opt/aws/bin/create_awsat_joborder.py -t $L0_JOBORDER_TEMPLATE -j $L0_JOBORDER -r $RAW_INPUT_DIR/*data
 /opt/aws/bin/IPF-AWS-L0 $L0_JOBORDER
 
 # Process L0 to L1
