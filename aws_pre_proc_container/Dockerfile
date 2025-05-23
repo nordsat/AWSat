@@ -1,7 +1,7 @@
 FROM ubuntu:20.04 as builder
 
 WORKDIR /opt
-COPY v3.1.1_scdb_1.7.0.zip /opt
+COPY aws-ipf-v3.1.1.zip /opt
 
 RUN apt update -y \
     && TZ="UTC" apt install -y tzdata \
@@ -9,9 +9,9 @@ RUN apt update -y \
 
 RUN mkdir -p /opt/aws/AWSat \
     && cd /opt \
-    && unzip v3.1.1_scdb_1.7.0.zip \
     && mkdir /opt/aws/for_container \
-    && mv v3.1.1_scdb_1.7.0/* /opt/aws/for_container/
+    && unzip aws-ipf-v3.1.1.zip \
+    && mv aws-ipf-v3.1.1/* /opt/aws/for_container/
 
 COPY JobOrder_L0_template.xml /opt/aws/for_container/AWSat/JobOrder_L0_template.xml
 COPY JobOrder_L1_template.xml /opt/aws/for_container/AWSat/JobOrder_L1_template.xml
@@ -29,7 +29,7 @@ RUN apt-get update -y \
        python3.9 \
        libopenblas0
 
-COPY --from=builder /opt/aws/for_container /opt/aws/
+COPY --from=builder /opt/aws/for_container/ /opt/aws/
 COPY entrypoint.sh /opt/aws/bin/
 
 ENTRYPOINT ["/opt/aws/bin/entrypoint.sh"]
