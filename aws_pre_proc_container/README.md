@@ -2,7 +2,7 @@
 
 Copy the pre-built processor library package to this directory:
 
-    cp ~/Downloads/v3.1.1.zip .
+    cp ~/Downloads/aws-ipf-v3.1.1.zip .
 
 If the processor version/package name changes, Dockerfile needs to be
 adjusted accordingly.
