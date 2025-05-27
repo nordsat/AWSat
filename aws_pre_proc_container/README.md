@@ -30,9 +30,17 @@ Build the container:
 Place raw data in a directory and create an output directory for L1
 data, for example `/tmp/raw/` and `/tmp/L1/`, respectively.
 
+The mission type can be set via environment variable (see commands below). There are three
+valid options:
+
+  * L - Local
+  * R - Regional (default if not given)
+  * G - Global
+
 Run the container with mounted directories:
 
     podman run \
+    -e MISSION_TYPE=R \
     --mount type=bind,source=/tmp/raw,target=/data/raw \
     --mount type=bind,source=/tmp/L1,target=/data/L1 \
     --rm \
@@ -42,6 +50,7 @@ If this doesn't work, SELinux might prohibit bind mounts and the following
 needs to be used instead:
 
     podman run \
+    -e MISSION_TYPE=R \
     -v /tmp/raw:/data/raw:Z \
     -v /tmp/L1:/data/L1:Z \
     --rm \

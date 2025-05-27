@@ -9,10 +9,17 @@ L1_JOBORDER=/opt/aws/JobOrder_L1.001.xml
 L0_JOBORDER_TEMPLATE=/opt/aws/AWSat/JobOrder_L0_template.xml
 L1_JOBORDER_TEMPLATE=/opt/aws/AWSat/JobOrder_L1_template.xml
 
+# The mission type can be given as environment variable. Default to "R".
+# G - Global
+# R - Regional
+# L - Local
 
-#if [ ! -e ${RAW_INPUT_DIR} | ! -e ${L1_OUTPUT_DIR} ]; then
-#    exit
-#fi
+if [ "$MISSION_TYPE" == "" ]; then
+    MISSION_TYPE="R"
+fi
+
+sed -i "s/MISSION_TYPE/$MISSION_TYPE/" $L0_JOBORDER_TEMPLATE
+sed -i "s/MISSION_TYPE/$MISSION_TYPE/" $L1_JOBORDER_TEMPLATE
 
 cd ${RAW_INPUT_DIR}
 for f in *.*; do

@@ -18,11 +18,11 @@
       </Processing_Parameter>
       <Processing_Parameter>
         <Name>mission_type</Name>
-        <Value>G</Value>
+        <Value>MISSION_TYPE</Value>
       </Processing_Parameter>
       <Processing_Parameter>
         <Name>disposition_mode</Name>
-        <Value>T</Value>
+        <Value>C</Value>
       </Processing_Parameter>
       <Processing_Parameter>
         <Name>environment</Name>
@@ -46,7 +46,7 @@
       </Processing_Parameter>
       <Processing_Parameter>
         <Name>processing_mode</Name>
-        <Value>B</Value>
+        <Value>N</Value>
       </Processing_Parameter>
     </Dynamic_Processing_Parameters>
     <!--Sensing_Time>
