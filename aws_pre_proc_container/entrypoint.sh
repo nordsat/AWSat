@@ -9,6 +9,8 @@ L1_JOBORDER=/opt/aws/JobOrder_L1.001.xml
 L0_JOBORDER_TEMPLATE=/opt/aws/AWSat/JobOrder_L0_template.xml
 L1_JOBORDER_TEMPLATE=/opt/aws/AWSat/JobOrder_L1_template.xml
 
+AWS_L0_CONFIG=/opt/aws/conf/L0/AWS_L0_Configuration.xml
+
 # The mission type can be given as environment variable. Default to "R".
 # G - Global
 # R - Regional
@@ -21,12 +23,11 @@ fi
 sed -i "s/MISSION_TYPE/$MISSION_TYPE/" $L0_JOBORDER_TEMPLATE
 sed -i "s/MISSION_TYPE/$MISSION_TYPE/" $L1_JOBORDER_TEMPLATE
 
-cd ${RAW_INPUT_DIR}
-for f in *.*; do
-    python3.9 /opt/aws/bin/DSDB_VCID_replace.py $f --replace-vcid 3 2
-done
+if [ "$MISSION_TYPE" == "G" ]; then
+    sed -i 's|<parameter name="valid_vcid" type="INTEGER">3</parameter>|<parameter name="valid_vcid" type="INTEGER">2</parameter>|' $AWS_L0_CONFIG
+fi
 
-cd /opt/aws/
+cd /opt/aws/conf
 
 # Process RAW data to L0
 python3.9 /opt/aws/bin/create_awsat_joborder.py -t $L0_JOBORDER_TEMPLATE -j $L0_JOBORDER -r $RAW_INPUT_DIR/*.*

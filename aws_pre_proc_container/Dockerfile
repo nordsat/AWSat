@@ -1,7 +1,7 @@
 FROM ubuntu:20.04 as builder
 
 WORKDIR /opt
-COPY aws-ipf-v3.1.1.zip /opt
+COPY aws-ipf-v3.1.3_DEM_NOLSM.zip /opt
 
 RUN apt update -y \
     && TZ="UTC" apt install -y tzdata \
@@ -10,13 +10,15 @@ RUN apt update -y \
 RUN mkdir -p /opt/aws/AWSat \
     && cd /opt \
     && mkdir /opt/aws/for_container \
-    && unzip aws-ipf-v3.1.1.zip \
-    && mv aws-ipf-v3.1.1/* /opt/aws/for_container/
+    && unzip aws-ipf-v3.1.3_DEM_NOLSM.zip \
+    && rm -r aws-ipf-v3.1.3/example/Data \
+    && rm -r aws-ipf-v3.1.3/example/conf \
+    && rm aws-ipf-v3.1.3/example/*.* \
+    && mv aws-ipf-v3.1.3/* /opt/aws/for_container/
 
 COPY JobOrder_L0_template.xml /opt/aws/for_container/AWSat/JobOrder_L0_template.xml
 COPY JobOrder_L1_template.xml /opt/aws/for_container/AWSat/JobOrder_L1_template.xml
 COPY create_awsat_joborder.py /opt/aws/for_container/bin/
-COPY DSDB_VCID_replace.py /opt/aws/for_container/bin/
 
 FROM ubuntu:20.04
 
