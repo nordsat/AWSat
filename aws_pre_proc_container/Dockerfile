@@ -29,7 +29,8 @@ RUN apt-get update -y \
        libnetcdf-c++4-1 \
        libgomp1 \
        python3.9 \
-       libopenblas0
+       libopenblas0 \
+    && apt clean
 
 COPY --from=builder /opt/aws/for_container/ /opt/aws/
 COPY entrypoint.sh /opt/aws/bin/
