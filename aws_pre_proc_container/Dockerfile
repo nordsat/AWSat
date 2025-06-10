@@ -23,6 +23,7 @@ COPY create_awsat_joborder.py /opt/aws/for_container/bin/
 FROM ubuntu:20.04
 
 RUN apt-get update -y \
+    && apt upgrade -y \
     && apt install -y \
        libpugixml1v5 \
        libnetcdf15 \
