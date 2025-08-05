@@ -7,6 +7,15 @@ Copy the pre-built processor library package to this directory:
 If the processor version/package name changes, Dockerfile needs to be
 adjusted accordingly.
 
+Extract auxiliary data to a directory on the host machine:
+
+    export AUX_DIR=/data/AWS_AUX_DATA
+    unzip -j aws-ipf-v3.1.3_DEM_NOLSM.zip aws-ipf-v3.1.3/example/ADF/AWS_AUX_DATA/AUX_DEM/*ACE2 -d $AUX_DIR/AUX_DEM
+    unzip -j aws-ipf-v3.1.3_DEM_NOLSM.zip aws-ipf-v3.1.3/example/ADF/AWS_AUX_DATA/GeoData/* -d $AUX_DIR/GeoData
+    unzip -j aws-ipf-v3.1.3_DEM_NOLSM.zip aws-ipf-v3.1.3/example/ADF/AWS_AUX_DATA/SCDB/* -d $AUX_DIR/SCDB
+
+The land/sea mask NetCDF4 files should be put to `$AUX_DIR/AUX_LSM` directory.
+
 Copy also the Python script that changes the VCID to the build directory:
 
     cp ~/Downloads/20250303/DSDB_VCID_replace.py .
@@ -43,6 +52,7 @@ Run the container with mounted directories:
     -e MISSION_TYPE=R \
     --mount type=bind,source=/tmp/raw,target=/data/raw \
     --mount type=bind,source=/tmp/L1,target=/data/L1 \
+    --mount type=bind,source=$AUX_DIR,target=/opt/aws/example/ADF/AWS_AUX_DATA \
     --rm \
     localhost/aws_pre_proc
 
@@ -53,6 +63,7 @@ needs to be used instead:
     -e MISSION_TYPE=R \
     -v /tmp/raw:/data/raw:Z \
     -v /tmp/L1:/data/L1:Z \
+    -v $AUX_DIR:/opt/aws/example/ADF/AWS_AUX_DATA:Z \
     --rm \
     localhost/aws_pre_proc
 
