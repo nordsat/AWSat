@@ -18,15 +18,15 @@ RUN microdnf -y update \
 
 # Install ECCodes
 RUN cd /tmp \
-    && wget https://confluence.ecmwf.int/download/attachments/45757960/eccodes-2.32.1-Source.tar.gz \
-    && tar -xzvf eccodes-2.32.1-Source.tar.gz \
+    && wget https://confluence.ecmwf.int/download/attachments/45757960/eccodes-2.34.1-Source.tar.gz \
+    && tar -xzvf eccodes-2.34.1-Source.tar.gz \
     && mkdir -p eccodes_build \
     && cd /tmp/eccodes_build \
     && cmake \
        -DCMAKE_INSTALL_PREFIX=/opt/eccodes \
        -DCMAKE_Fortran_COMPILER=gfortran \
        -DENABLE_AEC=OFF \
-       ../eccodes-2.32.1-Source \
+       ../eccodes-2.34.1-Source \
     && make \
     && make install
 
@@ -64,16 +64,18 @@ RUN cd /tmp \
     && make install
 
 # Install AAPP-AWS
-COPY AAPP-AWS_20231031.tar /tmp
+COPY AAPP_8.15.tgz /tmp
 RUN cd /tmp \
-    && tar -xvf AAPP-AWS_20231031.tar \
+    && tar -xzvf AAPP_8.15.tgz \
     && export ECCODES_INSTALL_DIR=/opt/eccodes \
     && export NETCDF_INSTALL_DIR=/opt/hdf5 \
+    && export HDF5_INSTALL_DIR=/opt/hdf5 \
     && export FC=gfortran \
-    && cd AAPP-AWS/src \
+    && cd AAPP_8.15/AAPP-AWS \
     && ./configure_aapp_aws.sh \
+    && cd src \
     && make \
-    && cp -r /tmp/AAPP-AWS/bin /opt
+    && cp -r /tmp/AAPP_8.15/AAPP-AWS/bin /opt
 
 # Create the final container
 FROM registry.access.redhat.com/ubi9/ubi-minimal
