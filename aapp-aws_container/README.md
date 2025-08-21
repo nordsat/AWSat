@@ -36,7 +36,7 @@ needs to be used instead:
     podman run \
     -v /tmp/L1:/data/L1:Z \
     -v /tmp/L1c:/data/L1c:Z \
-    -v /tmp/config:/config:Zz \
+    -v /tmp/config:/config:Z \
     --rm \
     localhost/aapp-aws
 

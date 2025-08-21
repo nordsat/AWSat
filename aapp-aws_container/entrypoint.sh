@@ -4,7 +4,7 @@ L1_INPUT_DIR=/data/L1
 L1C_OUTPUT_DIR=/data/L1c
 CONFIG_DIR=/config
 
-source /opt/bin/aapp-aws_env.sh
+source /opt/bin/aapp_aws_env.sh
 
 cd $L1_INPUT_DIR
 for f in *nc; do
