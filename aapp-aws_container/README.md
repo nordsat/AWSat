@@ -1,8 +1,8 @@
 # Building AAPP-AWS container
 
-Copy the processor source code to this directory:
+Copy the AAPP source code to this directory:
 
-    cp ~/Downloads/AAPP-AWS_20231031.tar .
+    cp ~/Downloads/AAPP_8_15.tgz .
 
 If the processor version/package name changes, Dockerfile needs to be
 adjusted accordingly.
