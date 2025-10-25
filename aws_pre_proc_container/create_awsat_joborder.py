@@ -125,7 +125,6 @@ def main():
     if station_name:
         set_station_name(template, station_name)
 
-    #template.write(args.joborder_file)
     if args.raw_files:
         set_raw_file_list(template, args.raw_files)
     else:
