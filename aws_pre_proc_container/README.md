@@ -7,12 +7,12 @@ Copy the pre-built processor library package to this directory:
 If the processor version/package name changes, Dockerfile needs to be
 adjusted accordingly.
 
-Extract auxiliary data to a directory on the host machine:
+Extract and copy auxiliary data to a directory on the host machine:
 
     export AUX_DIR=/data/AWS_AUX_DATA
     unzip -j aws-ipf-v3.1.3_DEM_NOLSM.zip aws-ipf-v3.1.3/example/ADF/AWS_AUX_DATA/AUX_DEM/*ACE2 -d $AUX_DIR/AUX_DEM
     unzip -j aws-ipf-v3.1.3_DEM_NOLSM.zip aws-ipf-v3.1.3/example/ADF/AWS_AUX_DATA/GeoData/* -d $AUX_DIR/GeoData
-    unzip -j aws-ipf-v3.1.3_DEM_NOLSM.zip aws-ipf-v3.1.3/example/ADF/AWS_AUX_DATA/SCDB/* -d $AUX_DIR/SCDB
+    cp ~/Downloads/scdb_1.8.0.nc -d $AUX_DIR/SCDB/
 
 The land/sea mask NetCDF4 files should be put to `$AUX_DIR/AUX_LSM` directory.
 

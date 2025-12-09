@@ -15,6 +15,7 @@ RUN mkdir -p /opt/aws/AWSat \
     && mkdir /opt/aws/for_container \
     && unzip aws-ipf-v3.1.3_DEM_NOLSM.zip \
     && sed -i "s,$sub_lsm_false,$sub_lsm_true,g" aws-ipf-v3.1.3/conf/L1/AWS_L1_Configuration.xml \
+    && sed -i s/scdb_1.7.0.nc/scdb_1.8.0.nc/ aws-ipf-v3.1.3/conf/L1/AWS_L1_Configuration.xml \
     && rm -r aws-ipf-v3.1.3/example/Data \
     && rm -r aws-ipf-v3.1.3/example/conf \
     && rm -r aws-ipf-v3.1.3/example/ADF/AWS_AUX_DATA \
