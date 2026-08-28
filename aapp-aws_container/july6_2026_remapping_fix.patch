@@ -1,0 +1,14 @@
+diff --color -ur old/AAPP-AWS/src/libaws/aws_remap.f90 new/AAPP-AWS/src/libaws/aws_remap.f90
+--- old/AAPP-AWS/src/libaws/aws_remap.f90	2026-08-07 09:28:54.342661944 +0200
++++ new/AAPP-AWS/src/libaws/aws_remap.f90	2026-08-07 09:30:05.485907264 +0200
+@@ -156,8 +156,8 @@
+       allocate(spot_weight(aws_n_feedhorns,aws_n_fovs))
+       allocate(scan_weight(aws_n_feedhorns,aws_n_fovs))
+       CALL compute_remapping_offests(latsmooth_bands, lonsmooth_bands, &
+-                                     latsmooth(:,delta_scans-1:delta_scans+1), &
+-                                     lonsmooth(:,delta_scans-1:delta_scans+1), &
++                                     latsmooth(:,delta_scans:delta_scans+2), &
++                                     lonsmooth(:,delta_scans:delta_scans+2), &
+                                      aws_reference_band,spot1,spot2,scan1,scan2,spot_weight,scan_weight)
+ 
+       deallocate(x,y,z,xsmooth,ysmooth,zsmooth,latsmooth,lonsmooth,latsmooth_bands,lonsmooth_bands)

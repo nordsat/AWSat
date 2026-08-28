@@ -10,6 +10,7 @@ RUN microdnf -y update \
 		make \
 		gcc \
 		g++ \
+                patch \
 		perl \
 		m4 \
 		zlib \
@@ -65,13 +66,16 @@ RUN cd /tmp \
 
 # Install AAPP-AWS
 COPY AAPP_8.15.tgz /tmp
+COPY july6_2026_remapping_fix.patch /tmp
 RUN cd /tmp \
     && tar -xzvf AAPP_8.15.tgz \
     && export ECCODES_INSTALL_DIR=/opt/eccodes \
     && export NETCDF_INSTALL_DIR=/opt/hdf5 \
     && export HDF5_INSTALL_DIR=/opt/hdf5 \
     && export FC=gfortran \
-    && cd AAPP_8.15/AAPP-AWS \
+    && cd AAPP_8.15 \
+    && patch -p1 < /tmp/july6_2026_remapping_fix.patch \
+    && cd AAPP-AWS \
     && ./configure_aapp_aws.sh \
     && cd src \
     && make \
