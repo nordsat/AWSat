@@ -7,9 +7,37 @@ import sys
 import xml.etree.ElementTree as ET
 
 
+GET_STATION_NAME = {"KAN": "Kangerlussuaq",
+                    "NRK": "Norrkoping",
+                    "OSL": "Oslo",
+                    "SOD": "Sodankyla"
+                    }
+
 def read_template(fname):
     """Read the template XML."""
     return ET.parse(fname)
+
+
+def set_station_name(template, station_name):
+    """Set the station name in the XML file."""
+    root = template.getroot()
+
+    # Change Processing station
+    station_elem = root.find('.//Processing_Station')
+    if station_elem is not None:
+        station_elem.text = station_name
+
+
+    # Change Processing parameter location
+    processing_params = root.findall('.//Processing_Parameter')
+    for param in processing_params:
+        name_elem = param.find('Name')
+        value_elem = param.find('Value')
+        if name_elem is not None and name_elem.text == "location":
+            value_elem.text = station_name
+            break
+
+    return template
 
 
 def get_raw_file_list(tree):
@@ -69,6 +97,9 @@ def parse_args():
     parser.add_argument("-r", "--raw-files", dest="raw_files", nargs='+',
                         type=str,
                         help="List of raw data files.")
+    parser.add_argument("-s", "--station", required=False,
+                        dest="station_short_name", type=str,
+                        help="ID of the station (e.g. KAN,kan,SOD,sod,NRK,nrk...).")
 
     args = parser.parse_args()
 
@@ -86,11 +117,19 @@ def main():
     args = parse_args()
 
     template = read_template(args.template_file)
+    station_name = None
+    station_short_name = args.station_short_name
+    if station_short_name:
+        station_name = GET_STATION_NAME.get(station_short_name.upper())
+
+    if station_name:
+        set_station_name(template, station_name)
+
     if args.raw_files:
         set_raw_file_list(template, args.raw_files)
     else:
         set_l0_files(template, args.level0_data, args.level0_nav)
-    template.write(args.joborder_file)
+    template.write(args.joborder_file, encoding='utf-8', xml_declaration=True)
 
 
 if __name__ == "__main__":
